@@ -1,0 +1,317 @@
+$ (1)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 0
+$
+$ Now the goal position:
+$
+4 9
+$
+$ Now follows the map (consists of only . or X)
+$
+X.X..
+.XXXX
+.X.XX
+XXXXX
+..XX.
+XXX..
+X...X
+XXXXX
+X..XX
+.X...
+X..XX
+X.X..
+.XXX.
+..X..
+XXXX.
+XXX..
+XX...
+X..X.
+X.XXX
+.....
+...X.
+
+
+$ (2)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 0
+$
+$ Now the goal position:
+$
+2 0
+$
+$ Now follows the map (consists of only . or X)
+$
+.X.X.XXX.XXXXX.XXXX.
+
+
+
+
+
+$ (3)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 1
+$
+$ Now the goal position:
+$
+1 18
+$
+$ Now follows the map (consists of only . or X)
+$
+X.XX.X.X..XX.XX....X.X
+.X.XXXX...XX....X..X..
+X...X.X.X...X...X....X
+.X....XX.X.X.XX..X.X..
+X.X..X..X..X.X.XX..XX.
+X....X.X.XX..XXX.X..X.
+XX.X..XXX.XXXX.XX...XX
+..XX...X.XXX..XXX.....
+.XXXXXXXX.X.XX...X.X.X
+X...X.X.X..XXXXXXXXXX.
+X.XX.X...X..XX..XXXXXX
+..X.X.XX.XXX..X..XXX.X
+..XXX..XX...XX..X....X
+.XX.....XXXX...X.X..X.
+.X.X.XXX.X....XXX.X..X
+..XX.X..X.....X..XX...
+XX.XX....XXXX...XXX.X.
+..X.XX..XX...X...X.X..
+XXX..XXX....X...X.X...
+
+
+$ (4)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 0
+$
+$ Now the goal position:
+$
+6 4
+$
+$ Now follows the map (consists of only . or X)
+$
+...X.....XX..X....XX
+..XX.X.....XXXX..X.X
+.XX...XX.X.X.XXX.XXX
+.X.....X.X.....X.X..
+..X..X.XX.X.X..XX.XX
+
+$ (5)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 0
+$
+$ Now the goal position:
+$
+4 6
+$
+$ Now follows the map (consists of only . or X)
+$
+..XX..XXX
+.XXX...XX
+.....XX..
+.XX.X..X.
+.XXXX.XX.
+.X..XX.X.
+.XX..XXX.
+
+
+$ (6)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+7 1
+$
+$ Now the goal position:
+$
+0 0
+$
+$ Now follows the map (consists of only . or X)
+$
+XX.XX...XXXX.X...XX.XX..
+..X..X.XXX.X..X...XXX..X
+
+
+
+$ (7)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 0
+$
+$ Now the goal position:
+$
+9 2
+$
+$ Now follows the map (consists of only . or X)
+$
+XXX.XXX.X.....X.X.X
+...X.....XX.X..XXX.
+X...XX.XX.XXX.X.X..
+.X...X.XXXX..XXX...
+....X.X.XX....X..X.
+.X....XX..X.X.XX.XX
+...X..XX..X....X...
+X.........XX.XX..X.
+.X.XXXX.XX.XXXX.X.X
+.....XX.X.X.XXX...X
+
+
+
+
+$ (8)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 0
+$
+$ Now the goal position:
+$
+0 2
+$
+$ Now follows the map (consists of only . or X)
+$
+X...X.
+.XXXXX
+...XXX
+XXX.X.
+X..XX.
+.X.XX.
+XXX.X.
+X..X..
+XXX...
+.XX...
+XX.XX.
+X...XX
+.X.X..
+.XXX.X
+..X..X
+
+
+$ (9)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 1
+$
+$ Now the goal position:
+$
+0 1
+$
+$ Now follows the map (consists of only . or X)
+$
+X..XX.XX
+.XXXX..X
+XX.XXX..
+.X.X.XX.
+XXXX.X.X
+.X.X.XXX
+.X.X...X
+.X.X.X.X
+...X.XXX
+X.X.X.XX
+....XXX.
+.X.XXX.X
+..X.XX..
+.XX..XX.
+.XX....X
+.X.XXX..
+XX.XXXXX
+
+
+
+
+$ (10)
+$ Start position, goal position and map
+$
+$ Start position: x, y
+$ Coordinate systen starts with ., . in lower left corner
+$
+$ Now the actual start position:
+$
+0 0
+$
+$ Now the goal position:
+$
+0 0
+$
+$ Now follows the map (consists of only . or X)
+$
+.X.X.X
+.X....
+X...XX
+..XXX.
+...XX.
+..XX.X
+...X.X
+X.....
+XXX.XX
+X..XXX
+.XXX..
+X...X.
+..X.X.
+X...XX
+.XXX.X
+....X.
+X..XXX
+.X.X.X
+X.XXX.
+X.....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
