@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>/////////////////////////////////
+// Pacemaker Parameters
+////////////////////////////////
+// A-V interval
+int TAVI=150;     
+// Lowest Rate Interval 
+int TLRI=1000;       
+// Post-Ventricular Atrial Refractory Period
+int TPVARP=100;
+// Ventricular Refractory Period      
+int TVRP=150;      
+// Upper Rate Interval
+int TURI=400;     
+
+int TPVAB=50;
+
+int fast=0;
+
+const int con_beats=30;</declaration>
+	<template>
+		<name>RanV</name>
+		<parameter>broadcast chan &amp;Vget,broadcast chan &amp;VP, broadcast chan &amp;V_act, int Vminwait, int Vmaxwait</parameter>
+		<declaration>clock x;</declaration>
+		<location id="id0" x="-224" y="-88">
+			<name x="-208" y="-104">VReady</name>
+			<label kind="invariant" x="-208" y="-88">x&lt;Vmaxwait</label>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-240" y="-152">V_act?</label>
+			<label kind="assignment" x="-232" y="-136">x=0</label>
+			<nail x="-240" y="-120"/>
+			<nail x="-208" y="-120"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-248" y="-48">VP?</label>
+			<label kind="assignment" x="-216" y="-48">x=0</label>
+			<nail x="-208" y="-48"/>
+			<nail x="-240" y="-48"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-336" y="-112">x&gt;Vminwait</label>
+			<label kind="synchronisation" x="-304" y="-96">Vget!</label>
+			<label kind="assignment" x="-296" y="-80">x=0</label>
+			<nail x="-256" y="-72"/>
+			<nail x="-256" y="-104"/>
+		</transition>
+	</template>
+	<template>
+		<name>RanA</name>
+		<parameter>broadcast chan &amp;Aget,broadcast chan &amp;AP, broadcast chan &amp;A_act,int Aminwait, int Amaxwait</parameter>
+		<declaration>clock x;</declaration>
+		<location id="id1" x="0" y="0">
+			<name x="16" y="-24">AReady</name>
+			<label kind="invariant" x="16" y="-8">x&lt;Amaxwait</label>
+		</location>
+		<init ref="id1"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-16" y="-64">A_act?</label>
+			<label kind="assignment" x="-8" y="-48">x=0</label>
+			<nail x="-16" y="-32"/>
+			<nail x="16" y="-32"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-24" y="32">AP?</label>
+			<label kind="assignment" x="8" y="32">x=0</label>
+			<nail x="-16" y="32"/>
+			<nail x="16" y="32"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-112" y="-24">x&gt;Aminwait</label>
+			<label kind="synchronisation" x="-72" y="-8">Aget!</label>
+			<label kind="assignment" x="-64" y="8">x=0</label>
+			<nail x="-32" y="16"/>
+			<nail x="-32" y="-16"/>
+		</transition>
+	</template>
+	<template>
+		<name>cond</name>
+		<parameter>broadcast chan &amp;Aget, broadcast chan &amp;Vget, broadcast chan &amp;A_act, broadcast chan &amp;V_act, broadcast chan &amp;AP, broadcast chan &amp;VP, int Tantemin, int Tantemax, int Tretromin, int Tretromax</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id2" x="-32" y="-88">
+			<name x="-42" y="-118">Retro</name>
+			<label kind="invariant" x="-42" y="-73">t&lt;=Tretromax</label>
+		</location>
+		<location id="id3" x="-384" y="-88">
+			<name x="-400" y="-120">Ante</name>
+			<label kind="invariant" x="-448" y="-72">t&lt;=Tantemax</label>
+		</location>
+		<location id="id4" x="-208" y="-88">
+			<name x="-192" y="-128">Idle</name>
+		</location>
+		<init ref="id4"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-216" y="0">VP?</label>
+			<nail x="-216" y="-56"/>
+			<nail x="-240" y="0"/>
+			<nail x="-176" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-216" y="-208">AP?</label>
+			<nail x="-232" y="-184"/>
+			<nail x="-184" y="-184"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-152" y="-24">VP?</label>
+			<label kind="assignment" x="-104" y="-16">t=0</label>
+			<nail x="-120" y="-16"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-136" y="-136">AP?</label>
+			<nail x="-128" y="-120"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-312" y="-136">VP?</label>
+			<nail x="-304" y="-120"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-352" y="-32">AP?</label>
+			<label kind="assignment" x="-296" y="-24">t=0</label>
+			<nail x="-312" y="-16"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-224" y="-40">Vget?</label>
+			<nail x="-224" y="-40"/>
+			<nail x="-192" y="-40"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-224" y="-168">Aget?</label>
+			<nail x="-224" y="-144"/>
+			<nail x="-192" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-136" y="-168">Aget?</label>
+			<nail x="-120" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-320" y="-168">Vget?</label>
+			<nail x="-304" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-160" y="-112">t&gt;=Tretromin</label>
+			<label kind="synchronisation" x="-144" y="-88">A_act!</label>
+			<nail x="-96" y="-88"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-336" y="-112">t&gt;=Tantemin</label>
+			<label kind="synchronisation" x="-312" y="-88">V_act!</label>
+			<nail x="-344" y="-88"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-160" y="-64">Vget?</label>
+			<label kind="assignment" x="-112" y="-64">t=0</label>
+			<nail x="-120" y="-56"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-344" y="-64">Aget?</label>
+			<label kind="assignment" x="-296" y="-64">t=0</label>
+			<nail x="-304" y="-56"/>
+		</transition>
+	</template>
+	<template>
+		<name>LRI_test</name>
+		<parameter>broadcast chan &amp;Vin, broadcast chan &amp;VP</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id5" x="56" y="-24">
+			<name x="48" y="-56">two_v</name>
+			<committed/>
+		</location>
+		<location id="id6" x="-40" y="-24">
+			<name x="-72" y="-56">wait_2nd</name>
+		</location>
+		<location id="id7" x="-144" y="-24">
+			<name x="-176" y="-56">wait_1st</name>
+		</location>
+		<init ref="id7"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="-8" y="0">t=0</label>
+			<nail x="56" y="16"/>
+			<nail x="-40" y="16"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-8" y="-32">VP?</label>
+			<nail x="8" y="-8"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-8" y="-64">Vin?</label>
+			<nail x="8" y="-48"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-112" y="-24">VP?</label>
+			<label kind="assignment" x="-112" y="0">t=0</label>
+			<nail x="-136" y="-16"/>
+			<nail x="-136" y="-16"/>
+			<nail x="-104" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-112" y="-64">Vin?</label>
+			<label kind="assignment" x="-104" y="-40">t=0</label>
+			<nail x="-96" y="-40"/>
+		</transition>
+	</template>
+	<template>
+		<name>URI_test</name>
+		<parameter>broadcast chan &amp;VS, broadcast chan &amp;VP</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id8" x="-32" y="-56">
+			<name x="-42" y="-86">interval</name>
+			<committed/>
+		</location>
+		<location id="id9" x="-120" y="-56">
+			<name x="-136" y="-88">wait_vp</name>
+		</location>
+		<location id="id10" x="-200" y="-56">
+			<name x="-224" y="-88">wait_v</name>
+		</location>
+		<init ref="id10"/>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-160" y="-8">VS?</label>
+			<label kind="assignment" x="-120" y="-8">t=0</label>
+			<nail x="-152" y="-8"/>
+			<nail x="-128" y="-8"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="assignment" x="-64" y="-40">t=0</label>
+			<nail x="-32" y="-16"/>
+			<nail x="-88" y="-16"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-80" y="-80">VP?</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-208" y="-40">VS?</label>
+			<label kind="assignment" x="-200" y="-24">t=0</label>
+			<nail x="-192" y="-48"/>
+			<nail x="-160" y="-24"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-168" y="-96">VP?</label>
+			<label kind="assignment" x="-168" y="-72">t=0</label>
+			<nail x="-160" y="-80"/>
+		</transition>
+	</template>
+	<template>
+		<name>NAV</name>
+		<parameter>broadcast chan &amp;Aget,broadcast chan &amp; AV,broadcast chan &amp;VA,broadcast chan &amp;A_act,broadcast chan &amp;AP, int AVERP_min,int AVERP_max</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id11" x="-224" y="-40">
+			<committed/>
+		</location>
+		<location id="id12" x="-288" y="-72">
+			<committed/>
+		</location>
+		<location id="id13" x="-224" y="0">
+			<committed/>
+		</location>
+		<location id="id14" x="-168" y="0">
+			<name x="-178" y="-30">ERP</name>
+			<label kind="invariant" x="-160" y="32">t&lt;=AVERP_max</label>
+		</location>
+		<location id="id15" x="-288" y="0">
+		</location>
+		<init ref="id15"/>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-120" y="8">VA?</label>
+			<nail x="-128" y="8"/>
+			<nail x="-128" y="32"/>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-120" y="-24">Aget?</label>
+			<nail x="-128" y="-24"/>
+			<nail x="-128" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-200" y="-64">AV!</label>
+			<nail x="-168" y="-40"/>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-272" y="-64">AP?</label>
+			<label kind="assignment" x="-272" y="-40">t=0</label>
+			<nail x="-288" y="-40"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-152" y="-56">A_act!</label>
+			<nail x="-168" y="-72"/>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-320" y="-56">VA?</label>
+			<label kind="assignment" x="-320" y="-40">t=0</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-208" y="0">AV!</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id15"/>
+			<label kind="guard" x="-280" y="40">t&gt;=AVERP_min</label>
+			<nail x="-168" y="64"/>
+			<nail x="-288" y="64"/>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-272" y="0">Aget?</label>
+			<label kind="assignment" x="-264" y="16">t=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>cond_d</name>
+		<parameter>broadcast chan &amp;AV,broadcast chan &amp;V_act,broadcast chan &amp;Vget,broadcast chan &amp;VA,broadcast chan &amp;VP,int Tcond_min, int Tcond_max</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id16" x="0" y="-96">
+			<label kind="invariant" x="-10" y="-81">t&lt;=2</label>
+		</location>
+		<location id="id17" x="144" y="0">
+			<name x="134" y="-30">retro</name>
+			<label kind="invariant" x="134" y="15">t&lt;=Tcond_max</label>
+		</location>
+		<location id="id18" x="-144" y="0">
+			<name x="-154" y="-30">ante</name>
+			<label kind="invariant" x="-154" y="15">t&lt;=Tcond_max</label>
+		</location>
+		<location id="id19" x="0" y="0">
+		</location>
+		<init ref="id19"/>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-120" y="-232">VP?</label>
+			<label kind="assignment" x="-80" y="-232">t=0</label>
+			<nail x="-144" y="-208"/>
+			<nail x="0" y="-208"/>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="48" y="48">VP?</label>
+			<label kind="assignment" x="80" y="48">t=0</label>
+			<nail x="0" y="64"/>
+			<nail x="144" y="64"/>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="32" y="-184">AV?</label>
+			<label kind="assignment" x="80" y="-184">t=0</label>
+			<nail x="144" y="-160"/>
+			<nail x="0" y="-160"/>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-128" y="-184">Vget?</label>
+			<label kind="assignment" x="-72" y="-184">t=0</label>
+			<nail x="-144" y="-160"/>
+			<nail x="0" y="-160"/>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id19"/>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<label kind="guard" x="40" y="-120">t&gt;=Tcond_min</label>
+			<label kind="synchronisation" x="40" y="-96">VA!</label>
+			<label kind="assignment" x="80" y="-96">t=0</label>
+			<nail x="144" y="-96"/>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id16"/>
+			<label kind="guard" x="-128" y="-120">t&gt;=Tcond_min</label>
+			<label kind="synchronisation" x="-128" y="-96">V_act!</label>
+			<label kind="assignment" x="-72" y="-96">t=0</label>
+			<nail x="-144" y="-96"/>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="48" y="-24">Vget?</label>
+			<label kind="assignment" x="64" y="0">t=0</label>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id18"/>
+			<label kind="synchronisation" x="-88" y="-24">AV?</label>
+			<label kind="assignment" x="-80" y="0">t=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>PVC</name>
+		<parameter>broadcast chan &amp;V_act</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id20" x="-16" y="-24">
+			<name x="-26" y="-54">PVCed</name>
+		</location>
+		<location id="id21" x="-120" y="-24">
+			<name x="-130" y="-54">Idle</name>
+		</location>
+		<init ref="id21"/>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id20"/>
+			<label kind="guard" x="-96" y="-48">t&gt;TVRP</label>
+			<label kind="synchronisation" x="-96" y="-24">V_act!</label>
+		</transition>
+	</template>
+	<template>
+		<name>Sensing</name>
+		<parameter>broadcast chan &amp;get, broadcast chan &amp;act,broadcast chan &amp;in</parameter>
+		<location id="id22" x="-40" y="-24">
+			<committed/>
+		</location>
+		<location id="id23" x="-152" y="-24">
+		</location>
+		<init ref="id23"/>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="-112" y="-104">act?</label>
+			<nail x="-152" y="-80"/>
+			<nail x="-40" y="-80"/>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id23"/>
+			<label kind="synchronisation" x="-104" y="8">in!</label>
+			<nail x="-40" y="24"/>
+			<nail x="-152" y="24"/>
+		</transition>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="-112" y="-48">get?</label>
+		</transition>
+	</template>
+	<template>
+		<name>Persist</name>
+		<parameter>broadcast chan &amp;Vin, broadcast chan &amp;VP</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id24" x="-832" y="-80">
+			<name x="-842" y="-110">err</name>
+		</location>
+		<location id="id25" x="-952" y="-80">
+			<name x="-962" y="-110">Check</name>
+			<committed/>
+		</location>
+		<location id="id26" x="-1088" y="-80">
+		</location>
+		<location id="id27" x="-1216" y="-80">
+		</location>
+		<init ref="id27"/>
+		<transition>
+			<source ref="id26"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-1032" y="-72">VP?</label>
+			<nail x="-1016" y="-48"/>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-1168" y="-72">VP?</label>
+			<label kind="assignment" x="-1184" y="-32">t=0,fast=0</label>
+			<nail x="-1152" y="-40"/>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id26"/>
+			<label kind="guard" x="-1040" y="-16">t&gt;TURI</label>
+			<label kind="assignment" x="-1056" y="8">t=0,fast=0</label>
+			<nail x="-952" y="8"/>
+			<nail x="-1088" y="8"/>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id26"/>
+			<label kind="guard" x="-1096" y="-184">t&lt;=TURI &amp;&amp; fast&lt;con_beats</label>
+			<label kind="assignment" x="-1048" y="-160">t=0,fast++</label>
+			<nail x="-952" y="-160"/>
+			<nail x="-1088" y="-160"/>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id24"/>
+			<label kind="guard" x="-912" y="-120">t&lt;=TURI &amp;&amp; fast&gt;=con_beats</label>
+		</transition>
+		<transition>
+			<source ref="id26"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-1032" y="-112">Vin?</label>
+			<nail x="-1016" y="-120"/>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-1168" y="-136">Vin?</label>
+			<label kind="assignment" x="-1184" y="-104">t=0,fast=0</label>
+			<nail x="-1152" y="-120"/>
+		</transition>
+	</template>
+	<system>broadcast chan AP,AS,VP,VS,Vget,Aget,AR,A_act,V_act,AV,VA,Vin,Ain,ABlock,VBlock;   
+    
+
+/////////////////////////////////
+// Heart Models
+///////////////////////////////// 
+// HM_0 
+PA_0=RanA(Aget,AP,V_act,20,2000);
+PV_0=RanV(Vget,VP,A_act,20,2000);
+
+// HM_1
+PV_1=RanV(Vget,VP,V_act,200,2000);
+PA_1=RanA(Aget,AP,A_act,200,2000);
+Pcond_1=cond(Aget,Vget,A_act,V_act,AP,VP,100,200,100,200);  
+
+// HM_2_1
+PV_2_1=RanV(Vget,VP,V_act,9999,9999);
+PA_2_1=RanA(Aget,AP,A_act,1000,2000);
+Pcond_2_1=cond(Aget,Vget,A_act,V_act,AP,VP,100,200,100,200);
+
+// HM_2_2
+PV_2_2=RanV(Vget,VP,V_act,9999,9999);
+PA_2_2=RanA(Aget,AP,A_act,200,300);
+Pcond_2_2=cond(Aget,Vget,A_act,V_act,AP,VP,100,200,100,200);
+
+// HM_2_3
+PV_2_3=RanV(Vget,VP,V_act,200,800);
+PA_2_3=RanA(Aget,AP,A_act,1000,2000);
+Pcond_2_3=cond(Aget,Vget,A_act,V_act,AP,VP,100,200,100,200);
+
+// HM_2_4
+PV_2_4=RanV(Vget,VP,V_act,200,2000);
+PA_2_4=RanA(Aget,AP,A_act,1000,2000);
+Pcond_2_4=cond(Aget,Vget,A_act,V_act,AP,VP,100,200,100,200);
+
+// HM_2_5
+PV_2_5=RanV(Vget,VP,V_act,9999,9999);
+PA_2_5=RanA(Aget,AP,A_act,400,2000);
+Pcond_2_5=cond(Aget,Vget,A_act,V_act,AP,VP,100,200,100,200);
+
+// HM_3_1
+PV_3_1=RanV(Vget,VP,V_act,9999,9999);
+PA_3_1=RanA(Aget,AP,A_act,1000,2000);
+Pcond_3_1=cond_d(AV,V_act,Vget,VA,VP,150,150);  
+PAV_3_1=NAV(Aget,AV,VA,A_act,AP,350,400);
+
+// HM_3_2
+PV_3_2=RanV(Vget,VP,V_act,9999,9999);
+PA_3_2=RanA(Aget,AP,A_act,200,300);
+Pcond_3_2=cond_d(AV,V_act,Vget,VA,VP,150,150);  
+PAV_3_2=NAV(Aget,AV,VA,A_act,AP,450,500);
+
+// HM_3_3
+PV_3_3=RanV(Vget,VP,V_act,200,800);
+PA_3_3=RanA(Aget,AP,A_act,1000,2000);
+Pcond_3_3=cond_d(AV,V_act,Vget,VA,VP,150,150);  
+PAV_3_3=NAV(Aget,AV,VA,A_act,AP,350,400);
+
+// HM_3_4
+PV_3_4=RanV(Vget,VP,V_act,9999,9999);
+PA_3_4=RanA(Aget,AP,A_act,1000,2000);
+Pcond_3_4=cond_d(AV,V_act,Vget,VA,VP,150,150);  
+PAV_3_4=NAV(Aget,AV,VA,A_act,AP,350,400);
+PPVC_3_4=PVC(Vget);
+
+// HM_3_5
+PV_3_5=RanV(Vget,VP,V_act,9999,9999);
+PA_3_5=RanA(Aget,AP,A_act,400,2000);
+Pcond_3_5=cond_d(AV,V_act,Vget,VA,VP,150,150);  
+PAV_3_5=NAV(Aget,AV,VA,A_act,AP,350,400);
+
+/////////////////////////////////////
+// Sensing
+////////////////////////////////////
+PAS=Sensing(Aget,A_act,Ain);
+PVS=Sensing(Vget,V_act,Vin);
+/////////////////////////////////////
+// Monitors for properties
+////////////////////////////////////
+ 
+// Lower Rate Limit
+PLRL=LRI_test(Vin,VP);
+PURL=URI_test(Vin,VP);
+PPersist=Persist(Vin,VP);
+
+/////////////////////////////////////
+// Your pacemaker model here
+////////////////////////////////////
+
+
+
+
+////////////////////////////////////////
+// Systems declarations
+////////////////////////////////////////
+
+///////////////////////////////
+// HW2_1
+//////////////////////////////
+// H3_1
+// system PA_3_1,PV_3_1,Pcond_3_1,PAV_3_1;
+// H3_2  
+// system PA_3_2,PV_3_2,Pcond_3_2,PAV_3_2;
+// H3_3
+// system PA_3_3,PV_3_3,Pcond_3_3,PAV_3_3;
+// H3_4
+// system PA_3_4,PV_3_4,Pcond_3_4,PAV_3_4,PPVC_3_4;
+// H3_5
+// system PA_3_5,PV_3_5,Pcond_3_5,PAV_3_5;
+
+
+///////////////////////////////
+// HW2_3
+///////////////////////////////
+// Level 0
+
+// H_0
+//system PA_0,PV_0,PAS,PVS,PLRL,PURL,PPersist;//Add your pacemaker model here
+
+
+// Level 1
+// H_1
+system PA_1,PV_1,Pcond_1,PAS,PVS,PLRL,PURL,PPersist;
+
+// Level 2
+// H2_1
+//system PA_2_1,PV_2_1,Pcond_2_1,PAS,PVS,PLRL,PURL,PPersist;
+
+// H2_2
+//system PA_2_2,PV_2_2,Pcond_2_2,PAS,PVS,PLRL,PURL,PPersist;
+
+// H2_3
+//system PA_2_3,PV_2_3,Pcond_2_3,PAS,PVS,PLRL,PURL,PPersist;
+
+// H2_4
+//system PA_2_4,PV_2_4,Pcond_2_4,PAS,PVS,PLRL,PURL,PPersist;
+
+// H2_5
+//system PA_2_5,PV_2_5,Pcond_2_5,PAS,PVS,PLRL,PURL,PPersist;
+
+// Level 3
+// H3_1
+//system PA_3_1,PV_3_1,Pcond_3_1,PAV_3_1,PAS,PVS,PLRL,PURL,PPersist;
+//H3_2
+//system PA_3_2,PV_3_2,Pcond_3_2,PAV_3_2,PAS,PVS,PLRL,PURL,PPersist;
+//H3_3
+//system PA_3_3,PV_3_3,Pcond_3_3,PAV_3_3,PAS,PVS,PLRL,PURL,PPersist;
+//H3_4
+//system PA_3_4,PV_3_4,Pcond_3_4,PAV_3_4,PPVC_3_4,PAS,PVS,PLRL,PURL,PPersist;
+//H3_5
+//system PA_3_5,PV_3_5,Pcond_3_5,PAV_3_5,PAS,PVS,PLRL,PURL,PPersist;
+</system>
+	<queries>
+		<query>
+			<formula>A[] (not deadlock)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (PLRL.two_v imply PLRL.t&lt;=TLRI)</formula>
+			<comment>[Heart condition 1] Bradycardia: the v-v interval should be no bigger than TLRI no matter how we set the heart rate for random heart. We can’t say the same thing for a-a interval.</comment>
+		</query>
+		<query>
+			<formula>A[] (PURL.interval imply PURL.t&gt;=TURI)</formula>
+			<comment>[Heart condition 1] For URI component: A ventricle pace(VP) can only happen at least TURI after a ventricle event(VS VP)</comment>
+		</query>
+		<query>
+			<formula>A[] (not PPersist.err)</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>
