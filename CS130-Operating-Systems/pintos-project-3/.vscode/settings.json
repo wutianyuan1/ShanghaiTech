@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "list.h": "c",
+        "pagedir.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

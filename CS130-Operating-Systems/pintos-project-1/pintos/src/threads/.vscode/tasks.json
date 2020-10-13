@@ -1,0 +1,5 @@
+{
+    "label": "echo",
+    "type": "shell",
+    "command": "make clean && make check"
+}

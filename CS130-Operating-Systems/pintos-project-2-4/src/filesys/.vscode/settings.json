@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "file.h": "c",
+        "thread.h": "c",
+        "cache.h": "c",
+        "free-map.h": "c",
+        "block.h": "c",
+        "*.inc": "c",
+        "ustar.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
+}

@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "vaddr.h": "c",
+        "palloc.h": "c",
+        "random.h": "c",
+        "flags.h": "c",
+        "stdint.h": "c",
+        "tests.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}

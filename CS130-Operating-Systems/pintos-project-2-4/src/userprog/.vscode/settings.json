@@ -1,0 +1,14 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "*.inc": "c",
+        "syn-read.h": "c",
+        "lib.h": "c",
+        "main.h": "c",
+        "file.h": "c",
+        "typeinfo": "c",
+        "thread.h": "c",
+        "timer.h": "c"
+    },
+    "C_Cpp.dimInactiveRegions": false
+}

@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/xorg",
+                "${workspaceFolder}/**",
+                "/home/wuty/桌面/vm/**",
+                "/home/wuty/桌面/vm/lib/**",
+                "/home/wuty/桌面/vm/lib/kernel/**"
+
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
