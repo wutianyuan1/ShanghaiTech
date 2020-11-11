@@ -5,7 +5,7 @@ from pygame.locals import *
 import cal_win
 import animation
 import random
-import deploy
+# import deploy
 
 
 CARD_WIDTH  = 40
@@ -533,17 +533,17 @@ class Game(object):
 
 def main():
     p1 = Player('A', '', '', '')
-    contract_interface_p1 = deploy.create_contract()
-    deploy.deploy(contract_interface_p1, p1.path, p1.pwd, p1.addr)
+    # contract_interface_p1 = deploy.create_contract()
+    # deploy.deploy(contract_interface_p1, p1.path, p1.pwd, p1.addr)
     p2 = Player('B', '', '', '')
-    contract_interface_p2 = deploy.create_contract()
-    deploy.deploy(contract_interface_p2, p2.path, p2.pwd, p2.addr)
+    # contract_interface_p2 = deploy.create_contract()
+    # deploy.deploy(contract_interface_p2, p2.path, p2.pwd, p2.addr)
     p3 = Player('C', '', '', '')
-    contract_interface_p3 = deploy.create_contract()
-    deploy.deploy(contract_interface_p3, p3.path, p3.pwd, p3.addr)
+    # contract_interface_p3 = deploy.create_contract()
+    # deploy.deploy(contract_interface_p3, p3.path, p3.pwd, p3.addr)
     p4 = Player('D', '', '', '')
-    contract_interface_p4 = deploy.create_contract()
-    deploy.deploy(contract_interface_p4, p4.path, p4.pwd, p4.addr)
+    # contract_interface_p4 = deploy.create_contract()
+    # deploy.deploy(contract_interface_p4, p4.path, p4.pwd, p4.addr)
 
     dbt = Game(p1, p2, p3, p4)
     #print(dbt._mountain._content)

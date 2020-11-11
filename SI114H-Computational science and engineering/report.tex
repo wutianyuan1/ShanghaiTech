@@ -92,7 +92,7 @@
 
 \newcommand{\hmwkTitle}{Homework\ \#1}
 \newcommand{\hmwkDueDate}{November 22, 2020}
-\newcommand{\hmwkClass}{Computational science and engineering}
+\newcommand{\hmwkClass}{SI114H}
 \newcommand{\hmwkClassInstructor}{Professor Qifeng Liao}
 \newcommand{\hmwkAuthorName}{Tianyuan Wu}
 \newcommand{\hmwkAuthorID}{63305667}
@@ -174,20 +174,65 @@
     \end{figure}
 \end{homeworkProblem}
 
-\newpage
-
 \begin{homeworkProblem}
-    Problem 4.1 on textbook\\
-    \solution\\
+    \solution
     \begin{enumerate}
         \item[(a)] $f(x) = sin^3(x)$\\
-            $$a_k = \frac{2}{\pi}\int_{-\pi}^{\pi}{}dx $$
+            We know that $sin^3(x)$ is an odd function, so all $a_n$ equals to 0.
+            $$b_0 = \frac{1}{\pi}\int_{-\pi}^{\pi}{sin^3(x)}dx = 0$$
+            $$b_n = \frac{1}{\pi}\int_{-\pi}^{\pi}{cos(nx)sin^3(x)}dx$$
+            Notice that 
+            $$sin^3(x) = \frac{3}{4}sin(x) - frac{1}{4}sin(3x)$$
+            Hence,
+            $$b_1 = \frac{3}{4}$$
+            $$b_3 = \frac{1}{4}$$
+            And all other $b_n = 0$
         \item[(b)] $f(x) = |sin(x)|$\\
-        
+            We know that $sin^3(x)$ is an even function, so all $b_n$ equals to 0.
+            $$a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi}{|sin(x)|}dx = \frac{4}{\pi}$$
+            \begin{equation}
+                \begin{aligned}
+                    a_n &= \frac{1}{\pi}\int_{-\pi}^{\pi}{cos(nx)|sin(x)|}dx \\
+                    &= \frac{1}{\pi}(\int_{0}^{\pi}cos(nx)sin(x)dx - \int_{-\pi}^{0}cos(nx)sin(x)dx)\\
+                    &= \frac{2}{\pi}\int_{0}^{\pi}{\frac{1}{2}(sin(n+1)x) - sin((n-1)x)}dx\\
+                    &= \begin{cases}
+                        -\frac{4}{\pi(n^2-1)}, \quad \text{n is even}\\
+                        0, \quad \text{n is odd}
+                    \end{cases}
+                \end{aligned}
+            \end{equation}
+            Let $n = 2k$, we have:
+            $$|sinx| = \frac{a_0}{2} + \sum_{k=1}^{\infty}a_kcos(2kx) = \frac{2}{\pi} - \frac{4}{\pi}\sum_{k=1}^{\infty}\frac{cos(2kx)}{4k^2-1}$$
+            
         \item[(c)] $f(x) = x$\\
-        
+            We know that:
+            $$a_0 = \int_{-\pi}^{\pi}{x}dx = 0$$
+            and
+            \begin{equation}
+                \begin{aligned}
+                    a_n &= \frac{1}{\pi}\int_{-\pi}^{\pi}{xcos(nx)}dx \\
+                    &= \frac{1}{n\pi}\int_{-\pi}^{\pi}{x}d(sin(nx))\\
+                    &= 0
+                \end{aligned}
+            \end{equation}
+            \begin{equation}
+                \begin{aligned}
+                    b_n &= \int_{-\pi}^{\pi}{xsin(nx)}dx \\
+                    &= -\frac{1}{n\pi}\int_{-\pi}^{\pi}{x}d(cos(nx))\\
+                    &= (-1)^{n-1}\cdot\frac{2}{n}
+                \end{aligned}
+            \end{equation}
+            Hence,
+            $$f(x) = 2\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n}sin(nx)$$
         \item[(d)] $f(x) = e^x$, complex form\\
-            $$a_k = sinh(x)$$
+        \begin{equation}
+            \begin{aligned}
+                c_n &= \frac{1}{2\pi}\int_{-\pi}^{\pi}{e^{x}e^{-inx}}dx\\
+                &= \frac{1}{2\pi}\cdot\frac{1}{1-ni}(e^{(1-ni)\pi} - e^{(ni-1)\pi})
+            \end{aligned}
+        \end{equation}
+        Hence,
+        $$f(x) = \sum_{n=-\infty}^{\infty}{\frac{1}{2\pi (1-ni)}(e^{(1-ni)\pi} - e^{(ni-1)\pi})}e^{inx}$$
     \end{enumerate}
 \end{homeworkProblem}
 
