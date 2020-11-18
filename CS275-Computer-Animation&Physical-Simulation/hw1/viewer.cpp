@@ -693,10 +693,16 @@ int main(int argc, char* argv[]) {
     std::string s = std::to_string(3.141593) + "," + s_bt + "," + s_gm + "\n";
     fwrite(s.c_str(), sizeof(char), s.size(), file_);
 
-    // Convert to quaternion & do rotation
-    eularAngleToQuat(angle, quat_);
-    build_rotmatrix(mat, quat_);
-    glMultMatrixf(&mat[0][0]);
+    // Convert to quaternion & do rotation    
+    glRotatef(angle[0]*180/(2*3.4159), 0, 1, 0);
+    glRotatef(angle[1]*180/(2*3.4159), 1, 0, 0);
+    glRotatef(angle[2]*180/(2*3.4159), 0, 1, 0);
+    
+    
+
+    // eularAngleToQuat(angle, quat_);
+    // build_rotmatrix(mat, quat_);
+    // glMultMatrixf(&mat[0][0]);
 
     // Fit to -1, 1
     glScalef(1.0f / maxExtent, 1.0f / maxExtent, 1.0f / maxExtent);

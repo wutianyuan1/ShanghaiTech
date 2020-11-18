@@ -1,0 +1,220 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{pythonhighlight}
+\usepackage{amssymb}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework\ \#2}
+\newcommand{\hmwkDueDate}{November 24, 2020}
+\newcommand{\hmwkClass}{SI114H}
+\newcommand{\hmwkClassInstructor}{Professor Qifeng Liao}
+\newcommand{\hmwkAuthorName}{Tianyuan Wu}
+\newcommand{\hmwkAuthorID}{63305667}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59pm}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor}}
+    \vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}\\ \hmwkAuthorID}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}
+    \solution\\
+    \begin{align}\nonumber
+        \hat{f}(k) &= \int_{-\infty}^{\infty}f(x)e^{-ikx}dx\\
+        &= \int_{0}^{\infty}e^{-(ik+a)x}dx + \int_{-\infty}^{0}e^{(a-ik)x}dx \\
+        &= \frac{1}{a+ik} - \frac{1}{a-ik}\\
+        &= \frac{-2ik}{a^2 + k^2}
+    \end{align}
+    So, the decay rate of $\hat{f}(k)$ is $\frac{1}{k^2}$, and there is a jump discontinuity in $g(x)$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \begin{enumerate}
+    \item [(a)]
+    \begin{align}\nonumber
+        \hat{f}(k) &= \int_{0}^{L} 1\cdot e^{-ikx}dx\\
+        &= -\frac{1}{ik}(e^{-ikL} - 1)\\
+        &= \frac{1}{ik}
+    \end{align}
+
+    \item [(b)]
+    We can calculate this fourier transformation by calculate the limit of $a=0$ of problem1
+    \begin{align}\nonumber
+        \hat{f}(k) &= \lim_{a\rightarrow 0}\frac{-2ik}{a^2+k^2}\\
+        &= \frac{-2i}{k}
+    \end{align}
+
+    \item [(c)]
+    Notice that $f(x) = \int_{0}^{1}e^{ikx}dx$ is the inverse fourier transform of the following function:
+    \begin{align}\nonumber
+        g(x) = \begin{cases}
+            1, \quad 0\le x \le 1\\
+            0, \quad \text{otherwise}
+        \end{cases}
+    \end{align}
+    Hence, the fourier transform of $f(x)$ is
+    \begin{align}\nonumber
+        \hat{f}(k) = \begin{cases}
+            1, \quad 0\le k \le 1\\
+            0, \quad \text{otherwise}
+        \end{cases}
+    \end{align}
+
+    \item [(d)]
+    \begin{align}\nonumber
+        \hat{f}(k) &= \int_{0}^{4\pi}sin(x)e^{-ikx}dx\\
+        &= \int_{0}^{4\pi}\frac{e^{ix} - e^{-ix}}{2i}e^{-ikx}dx\\
+        &= \frac{1}{2i}\frac{1}{(1-k)i}(e^{(1-k)4\pi i} - 1) - \frac{1}{2i}\frac{1}{(1+k)i}(1 - e^{-(1+k)4\pi i})\\
+        &= \frac{1}{1-k^2}
+    \end{align}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \begin{enumerate}
+        \item [(a)]
+        By the property of delta function $\delta(x)$, we know
+        \begin{align}\nonumber
+            f(x) &= \int_{-\infty}^{\infty}\delta(k)e^{ikx}dk\\
+            &= 1
+        \end{align}
+        
+        \item [(b)]
+        \begin{align}\nonumber
+            f(x) &= \int_{-\infty}^{0}e^ke^{ikx}dk + \int_{0}^{\infty}e^{-k}e^{ikx}dk\\
+            &= \lim_{w\rightarrow 0}(\int_{-w}^{0}e^ke^{ikx}dk + \int_{0}^{w}e^{-k}e^{ikx}dk)\\
+            &= \lim_{w\rightarrow 0}(\frac{2}{x^2+1} + e^{-w}[ix(e^{-ixw} - e^{ixw}) - (e^{-ixw} + e^{ixw})])\\
+            &= \frac{2}{x^2+1}
+        \end{align}
+        \end{enumerate}
+\end{homeworkProblem}
+
+\end{document}
