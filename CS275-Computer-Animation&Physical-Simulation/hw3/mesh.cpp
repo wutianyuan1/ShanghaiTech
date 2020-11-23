@@ -37,9 +37,9 @@ glm::vec3* Mesh::NewGrid(size_t n, GLfloat edgeLen)
     for (size_t i = 0; i < n; ++i)
         for (size_t j = 0; j < n; ++j)
         {
-            grid[i*n + j].x = i * step;
-            grid[i*n + j].y = j * step;
-            grid[i*n + j].z = 0;
+            grid[i*n + j].x = 0;
+            grid[i*n + j].y = i * step;
+            grid[i*n + j].z = j * step;
         }
     return grid; 
 }
@@ -48,7 +48,7 @@ glm::vec3* Mesh::NewGrid(size_t n, GLfloat edgeLen)
 void Mesh::draw() 
 {
     size_t n = m_meshsize, idx = 0;
-    std::vector<Triangle> triangles((n-1)*(n-1)*2);
+    std::vector<Triangle> triangles((n - 1) * (n - 1) * 2);
     for (size_t i = 0; i < n; ++i)
     {
         for (size_t j = 0; j < n; ++j)

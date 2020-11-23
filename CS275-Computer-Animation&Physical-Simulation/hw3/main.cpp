@@ -1,8 +1,6 @@
 #include "base.hpp"
 #include "mesh.hpp"
-
-
-#include "mesh.hpp"
+#include "solver.hpp"
 
 /**
  * My coodinrates:
@@ -18,8 +16,11 @@
 
 
 GLfloat lightDiffuse[] = {0x66/255.0f, 0xcc/255.0f, 0xff/255.0f, 1.0};      /* Red diffuse light. */
-GLfloat lightPosition[] = {1.0, 1.0, 1.0, 0.0};     /* Infinite light location. */
-int width = 600, height = 480, meshSize = 30;
+GLfloat lightPosition[] = {-1.0, -1.0, -1.0, 0.0};     /* Infinite light location. */
+int width = 600, height = 480, meshSize = 53;
+
+enum {DEMO_CIRCLE, DEMO_CUBE};
+
 GLFWwindow* window;
 Mesh* clothMesh;
 
@@ -61,25 +62,30 @@ void init(void)
     glTranslatef(-0.75, -0.65, 0);
 }
 
-void testGrid(glm::vec3* &vs, GLfloat t)
+void display(Solver* solver, unsigned char type)
 {
-    for (int i = 0; i < meshSize; ++i)
-        for (int j = 0; j < meshSize; ++j)
-            vs[i * meshSize + j].z = (float)2*t*sqrt((float)i/meshSize);
+    int t = 0;
+    while (glfwWindowShouldClose(window) == GL_FALSE)
+    {
+        glfwPollEvents();
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+        clothMesh->draw();
+        glfwSwapBuffers(window);
+        if (type == DEMO_CIRCLE)
+            solver->animateCircleForce(t, 30);
+        else if (type == DEMO_CUBE)
+            solver->animateCubeCollision(t, 30);
+        t += 1;
+    }
 }
 
-
-void display()
+int main(int argc, char** argv)
 {
-    glfwPollEvents();
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    // show and update
-    glfwSwapBuffers(window);      
-}
-
-
-int main(int, char**)
-{
+    if (argc < 2 || (std::string(argv[1]) != "circle" && std::string(argv[1]) != "cube"))
+    {
+        std::cerr << "invalid command\n";
+        exit(1);
+    }
     glfwInit();
     window = glfwCreateWindow(width, height, "Fast-Mass-Spring", NULL, NULL);
     glfwMakeContextCurrent(window);
@@ -89,20 +95,17 @@ int main(int, char**)
     glewExperimental = true;
     glewInit();
     init();
-    clothMesh = new Mesh(Mesh::NewGrid(meshSize, 1.5), meshSize);
-    auto vts = clothMesh->getVertices();
-    float t = 0;
-    while (glfwWindowShouldClose(window) == GL_FALSE)
-    {
-        glfwPollEvents();
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-        testGrid(vts, sin(t));
-        clothMesh->draw();
-        glfwSwapBuffers(window);
-        t += 0.02;
-    }
+    clothMesh = new Mesh(Mesh::NewGrid(meshSize, 2.5), meshSize);
+    Solver* clothSolver = new Solver(clothMesh->getVertices(), meshSize, 2.5);
 
+    if (std::string(argv[1]) == "circle")
+        display(clothSolver, DEMO_CIRCLE);
+    else
+        display(clothSolver, DEMO_CUBE);
     glfwTerminate();
+
     clothMesh->cleanUp();
+    delete clothMesh;
+    delete clothSolver;
     return 0;
 }
