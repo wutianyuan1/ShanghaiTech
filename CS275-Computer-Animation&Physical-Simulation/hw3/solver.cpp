@@ -53,8 +53,6 @@ void Solver::buildMatrices()
 
 void Solver::setCubeConstraint()
 {
-    int c = m_size / 2;
-    std::cout << p_curr[3*c+0] << " " << p_curr[3*c+1] << " " << p_curr[3*c+2] << std::endl;
     for (size_t i = m_size/3 - 1; i < 2*m_size/3; ++i)
         for (size_t j = m_size/3 - 1; j < 2*m_size/3; ++j)
         {
@@ -111,7 +109,7 @@ void Solver::constraintStep()
     {
         for (size_t sprIdx = 0; sprIdx < m_nspring; sprIdx++)
         {
-            Edge spr = m_spring[sprIdx];
+            Spring spr = m_spring[sprIdx];
             Vector3f pos(m_meshPtr[spr.first].x - m_meshPtr[spr.second].x,
                          m_meshPtr[spr.first].y - m_meshPtr[spr.second].y,
                          m_meshPtr[spr.first].z - m_meshPtr[spr.second].z);
@@ -142,7 +140,7 @@ void Solver::build()
     auto n = m_size;
     float cellLen = m_totalLen / (n - 1);
     m_nspring = (n - 1) * (5 * n - 2);
-    m_mass = 0.25 * VectorXf::Ones(m_size * m_size) / (m_size * m_size);
+    m_mass = VectorXf::Ones(m_size * m_size) / (m_size * m_size);
     G = m_mass[0] * g;
     m_stiff = VectorXf::Ones(m_nspring); // k = 1.0 for all springs
     m_restLen = VectorXf(m_nspring);
@@ -157,46 +155,46 @@ void Solver::build()
             if (i != n - 1 && j != n - 1)
             {
                 // struct springs
-                m_spring[curr] = Edge(i * n + j, (i + 1) * n + j);
+                m_spring[curr] = Spring(i * n + j, (i + 1) * n + j);
                 m_restLen[curr++] = cellLen;
-                m_spring[curr] = Edge(i * n + j, i * n + j + 1);
+                m_spring[curr] = Spring(i * n + j, i * n + j + 1);
                 m_restLen[curr++] = cellLen;
                 // shear springs
-                m_spring[curr] = Edge(i * n + j, (i + 1) * n + j + 1);
+                m_spring[curr] = Spring(i * n + j, (i + 1) * n + j + 1);
                 m_restLen[curr++] = 1.4142136 * cellLen;
-                m_spring[curr] = Edge((i + 1) * n + j, i * n + j + 1);
+                m_spring[curr] = Spring((i + 1) * n + j, i * n + j + 1);
                 m_restLen[curr++] = 1.4142136 * cellLen;           
                 // bend springs
                 if (i % 2 == 0 && i < n - 2)
                 {
-                    m_spring[curr] =  Edge(i * n + j, (i + 2) * n + j);
+                    m_spring[curr] =  Spring(i * n + j, (i + 2) * n + j);
                     m_restLen[curr++] = 2 * cellLen;
                 }
                 if (j % 2 == 0 && j < n - 2)
                 {
-                    m_spring[curr] = Edge(i * n + j, i * n + j + 2);
+                    m_spring[curr] = Spring(i * n + j, i * n + j + 2);
                     m_restLen[curr++] = 2 * cellLen;
                 }
                 continue;
             }
             else if (i == n - 1 && j != n - 1) // last row
             {
-                m_spring[curr] = Edge(i * n + j, i * n + j + 1);
+                m_spring[curr] = Spring(i * n + j, i * n + j + 1);
                 m_restLen[curr++] = cellLen;
                 if (j % 2 == 0 && j < n - 2)
                 {
-                    m_spring[curr] = Edge(i * n + j, i * n + j + 2);
+                    m_spring[curr] = Spring(i * n + j, i * n + j + 2);
                     m_restLen[curr++] = 2 * cellLen;
                 }
                 continue;
             }
             else if (j == n - 1 && i != n - 1) // last col
             {
-                m_spring[curr] = Edge(i * n + j, (i + 1) * n + j);
+                m_spring[curr] = Spring(i * n + j, (i + 1) * n + j);
                 m_restLen[curr++] = cellLen;
                 if (i % 2 == 0)
                 {
-                    m_spring[curr] =  Edge(i * n + j, (i + 2) * n + j);
+                    m_spring[curr] =  Spring(i * n + j, (i + 2) * n + j);
                     m_restLen[curr++] = 2 * cellLen;
                 }
                 continue;
@@ -208,15 +206,14 @@ void Solver::build()
 
 void Solver::step()
 {
-    int sprCnt = 0;
-    for (auto& spr : m_spring)
+    for (size_t sprCnt = 0; sprCnt < m_spring.size(); sprCnt++)
     {
+        Spring spr = m_spring[sprCnt];
         Vector3f p(p_curr[3*spr.first] - p_curr[3*spr.second], p_curr[3*spr.first + 1] - p_curr[3*spr.second + 1], 
                    p_curr[3*spr.first + 2] - p_curr[3*spr.second + 2]);
         p.normalize();
         for (int i = 0; i < 3; i++)
             springPos[3 * sprCnt + i] = m_restLen[sprCnt] * p[i];
-        sprCnt++; 
     }
     VectorXf tmp = inertialTerm + (m_step * m_step) * J * springPos + m_step * m_step * m_fext;
     VectorXf tmpCurr = solverMat.solve(tmp);

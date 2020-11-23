@@ -5,7 +5,7 @@
 
 using Vector3f      = Eigen::Vector3f;
 using VectorXf      = Eigen::VectorXf;
-using Edge          = std::pair<unsigned int, unsigned int>;
+using Spring        = std::pair<unsigned int, unsigned int>;
 using CholeskyMat   = Eigen::SimplicialLLT<Eigen::SparseMatrix<float> >;
 using SparseMat     = Eigen::SparseMatrix<float>;
 
@@ -41,8 +41,9 @@ private:
     VectorXf    m_mass;
     VectorXf    m_restLen;
     VectorXf    m_fext;
-    std::vector<Edge> m_spring;
-    std::vector<int> fixed;
+    std::vector<Spring> m_spring;
+    std::vector<int>    fixed;
+    
 private:
     Eigen::Map<Eigen::VectorXf>     p_prev;
     VectorXf                        p_curr;
