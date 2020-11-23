@@ -7,44 +7,38 @@ Solver::Solver(glm::vec3* mesh, size_t meshSize, float totalLen)
 : m_meshPtr(mesh), m_size(meshSize), m_nvert(meshSize*meshSize), m_totalLen(totalLen), fixed(meshSize*meshSize),
   p_prev((float*)m_meshPtr, 3 * m_nvert), p_curr(p_prev), springPos((5 * m_size - 2) * (m_size - 1))
 {
-    for (size_t i = 0; i < m_nvert; i++)
-        fixed[i] = 0;
     this->build();
     this->buildMatrices();
 }
 
 void Solver::buildMatrices()
 {
-    std::vector<Eigen::Triplet<float> > tmpL, tmpM, tmpJ;
     L.resize(3 * m_nvert, 3 * m_nvert);
     M.resize(3 * m_nvert, 3 * m_nvert);
     J.resize(3 * m_nvert, m_nspring);
     for (auto& spr : m_spring)
         for (int j = 0; j < 3; j++)
         {
-            
-            tmpL.push_back(Eigen::Triplet<float>(3 * spr.first + j, 3 * spr.first + j, 1));
-            tmpL.push_back(Eigen::Triplet<float>(3 * spr.second + j, 3 * spr.second + j, 1));
-            tmpL.push_back(Eigen::Triplet<float>(3 * spr.first + j, 3 * spr.second + j, -1));
-            tmpL.push_back(Eigen::Triplet<float>(3 * spr.second + j, 3 * spr.first + j, -1));
+            L.insert(3 * spr.first + j, 3 * spr.first + j)   = 1;
+            L.insert(3 * spr.second + j, 3 * spr.second + j) = 1;
+            L.insert(3 * spr.first + j, 3 * spr.second + j)  = -1;
+            L.insert(3 * spr.second + j, 3 * spr.first + j)  = -1;
         }
-    L.setFromTriplets(tmpL.begin(), tmpL.end());
 
-    int cnt = 0;
-    for (auto& spr : m_spring)
+    
+    for (size_t i = 0; i < m_spring.size(); i++)
     {
+        Spring spr = m_spring[i];
         for (int j = 0; j < 3; j++)
         {
-            tmpJ.push_back(Eigen::Triplet<float>(3 * spr.first + j, 3 * cnt + j,  1));
-            tmpJ.push_back(Eigen::Triplet<float>(3 * spr.first + j, 3 * cnt + j, -1));
+            J.insert(3 * spr.first + j, 3 * i + j) = 1;
+            J.insert(3 * spr.first + j, 3 * i + j) = -1;
         }
-        cnt++;
     }
-    J.setFromTriplets(tmpJ.begin(), tmpJ.end());
+
     for (size_t i = 0; i < m_nvert; i++)
         for (int j = 0; j < 3; j++)
-            tmpM.push_back(Eigen::Triplet<float>(3 * i + j, 3 * i + j, m_mass[i]));
-    M.setFromTriplets(tmpM.begin(), tmpM.end());
+            M.insert(3 * i + j, 3 * i + j) = m_mass[i];
 
     SparseMat tmp = M + m_step * m_step * L;
     solverMat.compute(tmp);
@@ -110,9 +104,8 @@ void Solver::constraintStep()
         for (size_t sprIdx = 0; sprIdx < m_nspring; sprIdx++)
         {
             Spring spr = m_spring[sprIdx];
-            Vector3f pos(m_meshPtr[spr.first].x - m_meshPtr[spr.second].x,
-                         m_meshPtr[spr.first].y - m_meshPtr[spr.second].y,
-                         m_meshPtr[spr.first].z - m_meshPtr[spr.second].z);
+            glm::vec3 posdiff = m_meshPtr[spr.first] - m_meshPtr[spr.second];
+            Vector3f pos(reinterpret_cast<float*>(&posdiff));
             
             float curr = pos.norm(), origin = m_restLen[sprIdx];
             float diff = (curr - (1 + tau) * origin) / curr, ratio = fabs(curr - origin) / origin;
@@ -139,6 +132,8 @@ void Solver::build()
 {
     auto n = m_size;
     float cellLen = m_totalLen / (n - 1);
+    int curr = 0;
+
     m_nspring = (n - 1) * (5 * n - 2);
     m_mass = VectorXf::Ones(m_size * m_size) / (m_size * m_size);
     G = m_mass[0] * g;
@@ -147,7 +142,10 @@ void Solver::build()
     m_fext = Vector3f(G, 0, 0).replicate(m_nvert, 1); // gravity
     m_step = 0.01;
     m_spring.reserve(m_nspring);
-    int curr = 0;
+
+    for (size_t i = 0; i < m_nvert; i++)
+        fixed[i] = 0;
+    
     for (size_t i = 0; i < n; ++i)
     {
         for (size_t j = 0; j < n; ++j)
