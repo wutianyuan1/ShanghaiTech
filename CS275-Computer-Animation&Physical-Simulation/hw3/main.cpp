@@ -15,12 +15,10 @@
  */
 
 
-GLfloat lightDiffuse[] = {0x66/255.0f, 0xcc/255.0f, 0xff/255.0f, 1.0};      /* Red diffuse light. */
+GLfloat lightDiffuse[]  = {0x66/255.0f, 0xcc/255.0f, 0xff/255.0f, 1.0};      /* Red diffuse light. */
 GLfloat lightPosition[] = {-1.0, -1.0, -1.0, 0.0};     /* Infinite light location. */
 int width = 600, height = 480, meshSize = 53;
-
 enum {DEMO_CIRCLE, DEMO_CUBE};
-
 GLFWwindow* window;
 Mesh* clothMesh;
 
