@@ -157,13 +157,6 @@ page_fault (struct intr_frame *f UNUSED)
      which fault_addr refers. */
    struct thread* curr = thread_current();
    curr->retval = -1;
-//      printf("page fault: curr thread: %s\n", thread_current()->name);
-//   printf ("Page fault at %p: %s error %s page in %s context.\n",
-//           fault_addr,
-//           not_present ? "not present" : "rights violation",
-//           write ? "writing" : "reading",
-//           user ? "user" : "kernel");
    thread_exit();
-
 }
 

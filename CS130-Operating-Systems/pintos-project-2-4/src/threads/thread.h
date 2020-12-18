@@ -107,7 +107,7 @@ struct thread
     struct list_elem elem;              /* List element. */
     struct dir* cwd;
     
-#ifdef USERPROG
+// #ifdef USERPROG
     /* Owned by userprog/process.c. */
     int retval;                         /* exit status */
     struct list childs;                 /* childs */
@@ -116,7 +116,7 @@ struct thread
     uint32_t *pagedir;                  /* Page directory. */
     int wait;                           /* which tid it's waiting for */
     int load_ret;
-#endif
+// #endif
 
 
     /* Owned by thread.c. */
