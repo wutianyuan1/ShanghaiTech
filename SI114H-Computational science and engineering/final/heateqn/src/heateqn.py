@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.animation import FuncAnimation
-from tqdm import tqdm
 from math import sin, cos, pi, sqrt, ceil
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import lsqr
 
 # Triangluation provided by scipy
 from scipy.spatial import Delaunay
+
 # Our own triangulation implementation
 # from delaunay import Delaunay
 
@@ -216,7 +216,7 @@ class FEM_Solver(object):
         nsteps = int(self.t_interval / self.dt)
         result = np.zeros((nsteps + 1, self.problem.numVertices))
         result[0, :] = self.problem.initialState(self.problem.allCoords)
-        for i in tqdm(range(1, 1 + nsteps)):
+        for i in range(1, 1 + nsteps):
             result[i, :] = self._step(i * self.dt, result[i-1, :])
         self.result = result
         return result
