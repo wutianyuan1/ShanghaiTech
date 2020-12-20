@@ -64,12 +64,12 @@ To solve a specific 2D heat transfer problem, the following conditions must be s
 \begin{enumerate}
     \item The region $\Omega$ and the initial condition in $\Omega$:
         \begin{align}\nonumber T_{\Omega, initial} = T_{\Omega}(x, y, 0) \end{align}
-    \item Neummann boundary conditions
+    \item Neumann boundary conditions
         \begin{align}\nonumber \frac{\partial{T}}{\partial{\vec{n}}}\big |_{\partial{\Omega_n}} = T_{n} \end{align}
     \item Dirichlet boundary conditions
         \begin{align}\nonumber T\big| _{\partial{\Omega_d}} = T_{d} \end{align}
 \end{enumerate}
-Once the initial condition, Dirichlet and Neummann boundary conditions are specified, 
+Once the initial condition, Dirichlet and Neumann boundary conditions are specified, 
 we can simulate the state of the system at any time.
 
 
@@ -144,7 +144,7 @@ we can simulate the state of the system at any time.
                 \For {each point in Points}
                     \State badTriangles := \{\}
                     \For {each triangle in Triangulation}
-                        \If point is inside triangle's circumcircle
+                        \If {point is inside triangle's circumcircle}
                             \State badTriangles = badTriangles $\bigcup$ triangle
                         \EndIf
                     \EndFor
@@ -218,14 +218,14 @@ we can simulate the state of the system at any time.
     \end{table}
     \subsection{Solution Visualization}
     We test our FEM solver in the region and boundary conditions shown in Fig.5. The red lines represents 
-    Neummann boundary conditions, the blue lines represents the Dirichlet boundary conditions, and the green lines
+    Neumann boundary conditions, the blue lines represents the Dirichlet boundary conditions, and the green lines
     shows the triangle mesh.
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.35]{../fig/mesh.png}
         \caption{Problem visualization}
     \end{figure}
-    The configuration of first case is, set $f(x, y, t) = 10$, Neummann boundary $\frac{\partial{T}}{\partial{\vec{n}}}\big |_{\partial{\Omega_n}} = 0$, 
+    The configuration of first case is, set $f(x, y, t) = 10$, Neumann boundary $\frac{\partial{T}}{\partial{\vec{n}}}\big |_{\partial{\Omega_n}} = 0$, 
     Dirichlet boundary $T\big| _{\partial{\Omega_d}} = 0$ and the initial condition $T_{initial} = 0$. Run 100 time steps, 
     with each step 0.01s. The result is shown in Fig.6
     \begin{figure}[H]
@@ -233,19 +233,19 @@ we can simulate the state of the system at any time.
         \includegraphics[scale=0.4]{../fig/ext_heat10_zero_others.png}
         \caption{Solution of case 1}
     \end{figure}
-    The other conditions of the second case is the same as the first one, except the Neummann boundary 
+    The other conditions of the second case is the same as the first one, except the Neumann boundary 
     $\frac{\partial{T}}{\partial{\vec{n}}}\big |_{\partial{\Omega_n}} = -10$. The result is shown in Fig.7
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.4]{../fig/ext_10_neum_-10.png}
         \caption{Solution of case 2}
     \end{figure}
-    The thrid case is, set all other conditions to 0, except the Neummann boundary $\frac{\partial{T}}{\partial{\vec{n}}}\big |_{\partial{\Omega_n}} = 10$,
+    The thrid case is, set all other conditions to 0, except the Neumann boundary $\frac{\partial{T}}{\partial{\vec{n}}}\big |_{\partial{\Omega_n}} = 10$,
     and the result is shown in Fig.8
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.4]{../fig/no_ext_neum_10.png}
-        \caption{Solution of case 2}
+        \caption{Solution of case 3}
     \end{figure}
     Limited to the PDF format, the dynamic visualization cannot be shown in this paper. But the animation can be 
     done with \texttt{FEM\_Solver.show\_animate} in our implementation.

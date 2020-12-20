@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1608396178 "/home/wuty/Desktop/heateqn/report/report.tex" "/home/wuty/Desktop/heateqn/report/report.pdf" "report" 1608396179
+["pdflatex"] 1608443747 "/home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.tex" "/home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.pdf" "report" 1608443748
   "../fig/err.png" 1608395285 23763 387b895ff9d70a7aa6eeff161cec6905 ""
   "../fig/ext_10_neum_-10.png" 1608279665 37733 65441a7255f31de3dd59a90f90ee13d5 ""
   "../fig/ext_heat10_zero_others.png" 1608279760 38247 869c9fb567a236f2f69f5dda5a207e73 ""
@@ -11,8 +11,8 @@
   "../fig/tri_2nd.png" 1608303756 195789 55f78919c41bdb4c9011011371382149 ""
   "../fig/tri_scipy.png" 1608303715 199294 14f5b96d36a308876dbef193f261f18f ""
   "/etc/texmf/web2c/texmf.cnf" 1608280559 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/wuty/Desktop/heateqn/report/report.aux" 1608396179 3524 4a89ac022914733219abbf6da6475c3a ""
-  "/home/wuty/Desktop/heateqn/report/report.tex" 1608396177 16265 c03c8064a1124dec95e9643053a41648 ""
+  "/home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.aux" 1608443747 3524 4adcf0b1c056802d2f33e6cbdc5c40f8 ""
+  "/home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.tex" 1608443744 16261 1144ec8b57bc3bc25eb35ad7a231a120 ""
   "/home/wuty/Pictures/fem.png" 1608362729 21526 cc9cd4a20c3016e340102a461dcc975b ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -107,11 +107,11 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1608280662 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1608280685 8256526 a275aa1468dde9f1ebc255aa58b0b66a ""
   "IEEEtran.cls" 1608305942 288304 b67b6fc6c2abb39f9b461923f5199343 ""
-  "report.aux" 1608396179 3524 4a89ac022914733219abbf6da6475c3a "pdflatex"
-  "report.tex" 1608396177 16265 c03c8064a1124dec95e9643053a41648 ""
+  "report.aux" 1608443747 3524 4adcf0b1c056802d2f33e6cbdc5c40f8 "pdflatex"
+  "report.tex" 1608443744 16261 1144ec8b57bc3bc25eb35ad7a231a120 ""
   (generated)
+  "/home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.pdf"
   "report.aux"
-  "/home/wuty/Desktop/heateqn/report/report.pdf"
   "report.log"
-  "/home/wuty/Desktop/heateqn/report/report.log"
+  "/home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.log"
   "report.pdf"

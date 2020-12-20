@@ -1,12 +1,12 @@
-PWD /home/wuty/Desktop/heateqn/report
+PWD /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/wuty/Desktop/heateqn/report/report.tex
-OUTPUT /home/wuty/Desktop/heateqn/report/report.log
-INPUT /home/wuty/Desktop/heateqn/report/IEEEtran.cls
-INPUT /home/wuty/Desktop/heateqn/report/IEEEtran.cls
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.tex
+OUTPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.log
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/IEEEtran.cls
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/IEEEtran.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map
@@ -96,9 +96,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-INPUT /home/wuty/Desktop/heateqn/report/report.aux
-INPUT /home/wuty/Desktop/heateqn/report/report.aux
-OUTPUT /home/wuty/Desktop/heateqn/report/report.aux
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.aux
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.aux
+OUTPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
@@ -149,7 +149,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT /home/wuty/Desktop/heateqn/report/report.pdf
+OUTPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
@@ -174,46 +174,46 @@ INPUT /home/wuty/Pictures/fem.png
 INPUT /home/wuty/Pictures/fem.png
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
-INPUT /home/wuty/Desktop/heateqn/report/../fig/tri_1st.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/tri_1st.png
 INPUT ../fig/tri_1st.png
 INPUT ../fig/tri_1st.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT /home/wuty/Desktop/heateqn/report/../fig/tri_2nd.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/tri_2nd.png
 INPUT ../fig/tri_2nd.png
 INPUT ../fig/tri_2nd.png
-INPUT /home/wuty/Desktop/heateqn/report/../fig/tri_scipy.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/tri_scipy.png
 INPUT ../fig/tri_scipy.png
 INPUT ../fig/tri_scipy.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmrc7t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT /home/wuty/Desktop/heateqn/report/../fig/mesh.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/mesh.png
 INPUT ../fig/mesh.png
 INPUT ../fig/mesh.png
-INPUT /home/wuty/Desktop/heateqn/report/../fig/ext_heat10_zero_others.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/ext_heat10_zero_others.png
 INPUT ../fig/ext_heat10_zero_others.png
 INPUT ../fig/ext_heat10_zero_others.png
-INPUT /home/wuty/Desktop/heateqn/report/../fig/ext_10_neum_-10.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/ext_10_neum_-10.png
 INPUT ../fig/ext_10_neum_-10.png
 INPUT ../fig/ext_10_neum_-10.png
-INPUT /home/wuty/Desktop/heateqn/report/../fig/no_ext_neum_10.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/no_ext_neum_10.png
 INPUT ../fig/no_ext_neum_10.png
 INPUT ../fig/no_ext_neum_10.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmrc7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT /home/wuty/Desktop/heateqn/report/../fig/sp_sol.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/sp_sol.png
 INPUT ../fig/sp_sol.png
 INPUT ../fig/sp_sol.png
-INPUT /home/wuty/Desktop/heateqn/report/../fig/sp_exact.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/sp_exact.png
 INPUT ../fig/sp_exact.png
 INPUT ../fig/sp_exact.png
-INPUT /home/wuty/Desktop/heateqn/report/../fig/err.png
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/../fig/err.png
 INPUT ../fig/err.png
 INPUT ../fig/err.png
-INPUT /home/wuty/Desktop/heateqn/report/report.aux
+INPUT /home/wuty/Desktop/ShanghaiTech/SI114H-Computational science and engineering/final/heateqn/report/report.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
