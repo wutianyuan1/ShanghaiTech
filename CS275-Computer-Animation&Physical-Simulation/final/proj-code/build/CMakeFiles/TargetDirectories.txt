@@ -1,0 +1,3 @@
+/home/wuty/Desktop/ShanghaiTech/CS275-Computer-Animation&Physical-Simulation/final/proj-code/build/CMakeFiles/rebuild_cache.dir
+/home/wuty/Desktop/ShanghaiTech/CS275-Computer-Animation&Physical-Simulation/final/proj-code/build/CMakeFiles/edit_cache.dir
+/home/wuty/Desktop/ShanghaiTech/CS275-Computer-Animation&Physical-Simulation/final/proj-code/build/CMakeFiles/Fluid-Rigid-SPH.dir

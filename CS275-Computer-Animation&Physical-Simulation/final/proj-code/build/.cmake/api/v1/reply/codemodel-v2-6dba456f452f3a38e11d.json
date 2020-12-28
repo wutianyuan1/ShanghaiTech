@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Fluid-Rigid-SPH",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Fluid-Rigid-SPH::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Fluid-Rigid-SPH-9b5fdb51c16f5711308d.json",
+					"name" : "Fluid-Rigid-SPH",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/wuty/Desktop/ShanghaiTech/CS275-Computer-Animation&Physical-Simulation/final/proj-code/build",
+		"source" : "/home/wuty/Desktop/ShanghaiTech/CS275-Computer-Animation&Physical-Simulation/final/proj-code"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}
