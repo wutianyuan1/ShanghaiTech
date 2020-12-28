@@ -24,15 +24,11 @@ inline float norm(vec3f v)
 SPH::SPH(vec3f worldSize, float cubeSize)
 : _boxSize(worldSize), _cubeSize(cubeSize), _numParticles(0) , _renderChunk(new Renderer(std::vector<RenderParticle>(), 1.0f, true))
 {
-    printf ("construct begin\n");
     _gridSize.x = (int)ceil(_boxSize.x / _cubeSize);
     _gridSize.y = (int)ceil(_boxSize.y / _cubeSize);
     _gridSize.z = (int)ceil(_boxSize.z / _cubeSize);
     _hashTable = new ParticleHash(_gridSize.x, _gridSize.y, _gridSize.z, cubeSize);
     _particles = new Particle[MAX_PARTICLE];
-    printf ("world size = (%f %f %f)\n", _boxSize.x, _boxSize.y, _boxSize.z);
-    printf ("grid size = (%d %d %d)\n", _gridSize.x, _gridSize.y, _gridSize.z);
-    printf ("ball size = (%f)\n", _cubeSize);
     for (float i = _gridSize.x * 1 / 4; i < _gridSize.x * 3 / 4; i += 0.35)
         for (float j = _gridSize.y * 1 / 4; j < _gridSize.y * 3 / 4; j += 0.35)
             for (float k =_gridSize.z * 1 / 4; k < _gridSize.z * 3 / 4; k += 0.35)
@@ -233,7 +229,7 @@ void SPH::Update(Ball* ball)
 
     for(int i = 0; i < _numParticles; i++)
     {
-        _renderParticles[i] = {_particles[i].position * 10.0f,  glm::vec3(0, 0, 1)};
+        _renderParticles[i] = {_particles[i].position * 10.0f,  glm::vec3(102.0/255.0, 204.0/255.0, 1.0)};
         _renderParticles[i].position.z -= 5.0f;
         _renderParticles[i].position.y -= 7.0f;
     }      

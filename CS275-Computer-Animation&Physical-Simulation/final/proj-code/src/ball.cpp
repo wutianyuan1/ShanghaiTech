@@ -20,7 +20,7 @@ void Ball::draw()
                 vec3f p(i * a / RENDER_ACC - a / 2, j * a / RENDER_ACC - a / 2, k * a / RENDER_ACC - a / 2);
                 float d = p.x * p.x + p.y * p.y + p.z * p.z;
                 if (d < a * a / 4.0 && d > a * a / 4.5)
-                    vertices.push_back({pos + p, vec3f(1, 0, 0)});
+                    vertices.push_back({pos + p, vec3f(153.0/255.0, 1.0, 1.0)});
             }
     renderer->setParticles(vertices);
 }
@@ -36,7 +36,7 @@ void Ball::Update()
     {
         velocity = velocity + 2.0f * config::GRAVITY * config::TIME_STEP;
         position = position + velocity * config::TIME_STEP;
-        if (position.y - a/2 < -7.0) // hit bottom od box
+        if (position.y - a/2 < -7.0) // hit bottom of box
         {
             velocity = velocity * config::DAMPING;
             position.y = -7.0 + a/2;
