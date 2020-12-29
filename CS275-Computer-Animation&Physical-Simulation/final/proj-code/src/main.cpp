@@ -24,6 +24,7 @@ float particle_radius = 0.2f;
 SPH* sphSimulation = nullptr;
 Ball* ball = nullptr;
 Box* box = nullptr;
+bool start = false;
 
 // window
 const unsigned int WINDOW_WIDTH = 800;
@@ -140,7 +141,6 @@ int main(void)
 
     double prev_time = glfwGetTime();
     std::string title;
-    int frm = 0;
 
     while (!glfwWindowShouldClose(window))
     {        
@@ -152,9 +152,11 @@ int main(void)
         float epsilon = 0.25 * particle_radius;
         title = std::string("SPH - Fluid and Rigid - fps=") + std::to_string(1.0 / dt);
         glfwSetWindowTitle(window, title.c_str());
-        sphSimulation->Update(ball);
-        ball->Update();
-        frm++;
+        if (start)
+        {
+        	sphSimulation->Update(ball);
+        	ball->Update();
+       	}
 
 //////// Begin 3rd Party Renderer ////////////////
         glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
@@ -311,6 +313,9 @@ void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods
     case GLFW_KEY_DOWN:
         ball->should_drop = true;
         break;
+    case GLFW_KEY_SPACE:
+    	start = !start;
+    	break;
     default:
         break;
     }
