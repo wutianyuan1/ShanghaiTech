@@ -1,0 +1,11 @@
+$$\frac{\partial{\vec{u}}}{\partial{t}} + \vec{u} \cdot \nabla\vec{u} + \frac{1}{\rho}\nabla p = \vec{g} + \nu \nabla \cdot \nabla \vec{u}$$
+$\vec{F} = \vec{F}^{ext} + \vec{F}^{pres} + \vec{F}^{visc} = \rho \vec{a}$
+$A(r) = \sum_{j}{A_j \frac{m_j}{\rho_j} W(\vec{r} - \vec{r}_j, h)}$
+$$\omega_{Poly6}(r, h) = \begin{cases}
+    K_{Poly6}(h^2 - r^2)^3, \quad 0\le r \le h\\
+    0, \quad otherwise \end{cases}$$
+$K_{Poly6} = \frac{315}{64\pi h^9}$
+$\vec{a}_i ^{pres} = m\frac{45}{\pi h^6}\sum_{j}(\frac{p_i + p_j}{2\rho _i \rho _j}(h-r)^2\frac{r_i - r_j}{|r_i - r_j|})$
+$\vec{a}_i ^{visc} = m\mu\frac{45}{\pi h^6}\sum_{j}(\frac{\vec{u}_i - \vec{u}_j}{\rho_i \rho_j}(h - |r_i - r_j|))$
+$\vec{a}_i ^{surf} = -\sigma\nabla ^2c_s \frac{\nabla c_s}{\rho_i |\nabla c_s|}$
+$\vec{a}_i = \vec{a}_i^{pres} + \vec{a}_i^{visc} + \vec{a}_i^{surf} + \vec{g}$
