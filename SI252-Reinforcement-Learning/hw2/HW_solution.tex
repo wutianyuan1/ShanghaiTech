@@ -517,6 +517,30 @@
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
+    We can simplify this problem by sum up the cost of choosing some arm and the reward of choosing it to a overall reward.
+    That is, let
+    $$R_{overall, arm_i} = R_{arm_i} - cost_{arm_i}$$
+    Then, we can use any bandit algorithm without constraint, and maximize the overall reward. For example, if we use epsilon-greedy
+    algorithm, then the pseudo-code is shown below:
+    \begin{algorithm}[h]  
+        \caption{$\epsilon$-greedy algorithm for constraint bandit}  
+            \begin{algorithmic}[1]  
+                \State Let $Arm_1, \ldots, Arm_n$ be the $n$ arms
+                \State $overall = \{0, 0, \ldots, 0\}$
+                \For {$t = 1,2,3,\ldots,N$}
+                    \If {$unif(0, 1) < \epsilon$}
+                        \State arm = random\_choice(arms)
+                    \Else
+                        \State arm = argmax(arms, overall)
+                    \EndIf
+                    \State reward, cost = bandit[arm].play()
+                    \State overall[arm] = reward - cost
+                \EndFor
+            \end{algorithmic}  
+        \end{algorithm} 
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
     Please reproduce the proof of regret decomposition lemma.\\
     \textbf{Solution}\\
     For $Q(a_\tau) = \mathbb{E}[r_\tau | a_\tau]$ is a random variable, and by adam's rule,
